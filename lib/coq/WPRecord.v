@@ -571,7 +571,7 @@ Proof using.
   set (H' := (p ~> Record L \-* ^(Wptag (Wpgen_val' V)) Q)).
   forwards R': R; eauto. clear R. specializes R' p.
   applys himpl_Wpgen_app_untyped_of_Triple.
-  applys Triple_PostCast_conseq. xapplys (rm R'). simpl.
+  applys Triple_PostCast_conseq ET. xapplys (rm R'). simpl.
   unfold H'. xsimpl. intros ? ->. auto. (* unfold Wptag, Wpgen_val'. *)
 Qed. (* --TODO: simplify proof *)
 
@@ -704,7 +704,7 @@ Ltac xapp_record_get_grouped tt :=
    case there is support for the "exploded" mode. *)
 
 Ltac xapp_record_get tt :=
-  first [ xapp_record_get_find_single_field tt; fail 1 (* trigger call to [xapp] *)
+  first [ idtac "here"; xapp_record_get_find_single_field tt; fail 1 (* trigger call to [xapp] *)
         | xapp_record_get_grouped tt ].
 
 
@@ -1045,7 +1045,7 @@ Notation "r '.' f <- v" :=
    v constr at level 69,
    format "r '.' f  <-  v") : cf_scope.
 
-(** Same with tag 
+(** Same with tag
 DEPRECATED
 
 

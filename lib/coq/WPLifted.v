@@ -695,7 +695,7 @@ Lemma Wpgen_sound_let : forall (F1:Formula) (F2of:forall `{EA1:Enc A1},A1->Formu
 Proof using.
   Opaque Ctx.rem.
   introv M1 M2. intros A EA. applys qimpl_Wp_of_Triple. intros Q.
-  remove_MkStruct. xtpull ;=> A1 EA1. simpl. applys Triple_let.
+  remove_MkStruct. xtpull ;=> A1 EA1. simpl. applys Triple_let EA1.
   { rewrite Triple_eq_himpl_Wp. applys* M1. }
   { intros X. rewrite Triple_eq_himpl_Wp.
     unfold Subst1. rewrite <- isubst_add_eq_subst1_isubst. applys* M2. }

@@ -22,6 +22,7 @@ Set Implicit Arguments.
 From TLC Require Export LibCore.
 From CFML Require Export LibSepTLCbuffer.
 
+Elpi Override TC - Morphisms.Proper Morphisms.ProperProxy RelationClasses.Reflexive RelationClasses.RewriteRelation Relation_Definitions.relation subrelation.
 
 (* ********************************************************************** *)
 (** * Assumptions of the functor *)

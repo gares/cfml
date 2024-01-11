@@ -400,20 +400,18 @@ Hint Resolve haffine_Ref : haffine.
 (* Expose that [ref_ A] (defined in Pervasives_ml) is defined as [loc] *)
 Hint Transparent ref_ : haffine.
 
-
 Lemma ref_spec : forall `{EA:Enc A} (v:A),
   SPEC (ref v)
     PRE \[]
     POST (fun r => r ~~> v).
 Proof using. xcf. xgo~. Qed.
 
-
 Lemma infix_emark_spec : forall A `{EA:Enc A} (v:A) r,
   SPEC (infix_emark__ r)
     INV (r ~~> v)
     POST \[= v].
-Proof using. xunfold @Ref. xcf_go*. Qed.
 
+Proof using. xunfold @Ref. xcf_go*. Qed.
 
 Lemma infix_colon_eq_spec : forall A `{EA:Enc A} (v w:A) r,
   SPEC (infix_colon_eq__ r w)

@@ -5,7 +5,7 @@ Require Import Pervasives_ml Pervasives_proof.
 From TLC Require Export LibListZ.  (* TODO: needed? *)
 Require Import List_ml.
 Generalizable Variables A.
-(* 
+(*
 Open Scope cf_scope.
 *)
 

@@ -37,9 +37,13 @@ Implicit Types b : bool.
 (* ---------------------------------------------------------------------- *)
 (* ** Encoders *)
 
+(*#[mode(i)] *)
+TC.Declare
 Class Enc (A:Type) : Type := make_Enc
   { enc : A -> val;
     enc_inj : injective enc }.
+Arguments enc {_ _}.
+Arguments enc_inj {_ _}.
 
 Hint Mode Enc + : typeclass_instances.
 
@@ -165,6 +169,18 @@ Definition dyns := list dyn.
     This type name helps deriving instances of encoders. *)
 
 Definition func := val.
+
+Elpi Accumulate TC.Solver lp:{{
+
+:before "99"
+tc-CFML.SepLifted.tc-Enc X S :- whd1 X X', !, tc-CFML.SepLifted.tc-Enc X' S.
+
+% Coq seems not to respect modes and sometimes we have tc-Enc X with a context
+% that has (T : Type) (ET : EnC T) ...
+%tc-CFML.SepLifted.tc-Enc uvar S :-
+%  names L, std.mem L X, tc-CFML.SepLifted.tc-Enc X S.
+
+}}.
 
 (* TODO: use or deprecate ... *)
 
