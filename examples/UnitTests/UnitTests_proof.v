@@ -219,7 +219,14 @@ Lemma let_poly_f0_spec : forall A,
     PRE \[]
     POST \[= @nil A].
 Proof using.
-  xcf. xapp. intros r. (* TODO: need to automate intro after xlet_cont followed with xapp? *)
+intro.
+pose (xxx := Use_Enc_any.Enc_any A).
+xcf.
+
+  xapp.
+
+  intros r. (* TODO: need to automate intro after xlet_cont followed with xapp? *)
+
   xapp. xsimpl~.
 Qed.
 
@@ -228,6 +235,8 @@ Lemma let_poly_f1_spec : forall A,
     PRE \[]
     POST \[= @nil A].
 Proof using.
+intro A; pose (xxx := Use_Enc_any.Enc_any A).
+
   xcf. xapp. intros. xapp. xsimpl~.
 Qed.
 
@@ -236,6 +245,8 @@ Lemma let_poly_f2_spec : forall A,
     PRE \[]
     POST \[= @nil A].
 Proof using.
+intro A; pose (xxx := Use_Enc_any.Enc_any A).
+
   xcf. xapp. intros. xapp. xsimpl~.
 Qed.
 
@@ -318,6 +329,8 @@ Lemma let_poly_k1_spec : forall A,
     PRE \[]
     POST \[= @nil A].
 Proof using.
+intro A; pose (xxx := Use_Enc_any.Enc_any A).
+
   xcf. xvals~.
 Qed.
 
@@ -326,6 +339,8 @@ Lemma let_poly_k2_spec : forall A,
     PRE \[]
     POST (fun (r:loc) => r ~~> (@nil A)).
 Proof using.
+intro A; pose (xxx := Use_Enc_any.Enc_any A).
+
   xcf. xapp. xsimpl*.
 Qed.
 
@@ -335,7 +350,7 @@ Lemma let_poly_r1_spec :
     POST \[= tt].
 Proof using.
   xcf. xapp. intros. xvals~.
-  Unshelve. xend. xend.
+  (*Unshelve. xend. xend.*)
 Qed.
 
 Lemma let_poly_r2_spec : forall A,
@@ -343,6 +358,8 @@ Lemma let_poly_r2_spec : forall A,
     PRE \[]
     POST \[= @nil A].
 Proof using.
+intro A; pose (xxx := Use_Enc_any.Enc_any A).
+
   xcf. xlet. (* TODO: xlet_val should be automated before xapp. *)
   xval. xsimpl. subst*.
 Qed.
@@ -352,6 +369,8 @@ Lemma let_poly_r3_spec : forall A,
     PRE \[]
     POST \[= @nil A].
 Proof using.
+intro A; pose (xxx := Use_Enc_any.Enc_any A).
+
   xcf. xlet (fun A (r:list A) => r = nil).
   { xapp. intros. xgc_post. xval. xsimpl*. skip. } (* TODO: Need to put a \GC automatically in there? *)
     (* TODO: need to instantiate the evar automatically based on what isn't in scope !? *)
@@ -514,7 +533,10 @@ Lemma val_poly_spec : forall A,
   SPEC (val_poly tt)
     PRE \[]
     POST \[= @nil A].
-Proof using. xcf. xgo*. Qed.
+Proof using.
+intro A; pose (xxx := Use_Enc_any.Enc_any A).
+
+xcf. xgo*. Qed.
 
 
 (********************************************************************)
@@ -1754,6 +1776,7 @@ Lemma sitems_get_nb_spec : forall (A:Type) `{EA:Enc A}  (r:loc) (n:int),
     INV (r ~~~> `{ nb' := n; items' := @nil A })
     POST \[= n].
 Proof using.
+
   (* TODO dup 3.
   { intros A. xcf_show as R. applys (R A). xgo~. }
   { xcf_show as R. unfold sitems_ in R. specializes R unit. xgo~. } *)

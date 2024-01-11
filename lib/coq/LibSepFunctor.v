@@ -192,6 +192,9 @@ Implicit Types P : Prop.
 
 Definition hprop := heap -> Prop.
 
+#[global] Instance Extensionality_hprop : Extensionality hprop.
+Proof. unfold hprop. apply _. Defined.
+
 Implicit Types H : hprop.
 
 Global Instance Inhab_hprop : Inhab hprop.

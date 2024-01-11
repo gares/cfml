@@ -170,18 +170,6 @@ Definition dyns := list dyn.
 
 Definition func := val.
 
-Elpi Accumulate TC.Solver lp:{{
-
-:before "99"
-tc-CFML.SepLifted.tc-Enc X S :- whd1 X X', !, tc-CFML.SepLifted.tc-Enc X' S.
-
-% Coq seems not to respect modes and sometimes we have tc-Enc X with a context
-% that has (T : Type) (ET : EnC T) ...
-%tc-CFML.SepLifted.tc-Enc uvar S :-
-%  names L, std.mem L X, tc-CFML.SepLifted.tc-Enc X S.
-
-}}.
-
 (* TODO: use or deprecate ... *)
 
 
@@ -217,6 +205,9 @@ Global Instance Enc_val : Enc val := make_Enc injective_enc_val_impl.
 Lemma enc_val : forall (v:val),
   enc v = v.
 Proof using. auto. Qed.
+
+#[global] Instance Enc_func : Enc func.
+Proof. unfold func. apply _. Defined.
 
 Lemma enc_func : forall (f:func),
   enc f = f.
