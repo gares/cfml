@@ -16,7 +16,7 @@ open Printf
 (* ** Helper functions for various things *)
 
 let register_cf x =
-   Coqtop_custom (sprintf "Global Hint Extern 1 (WPHeader_Register_CF %s) => WPHeader_Provide %s." x (cf_axiom_name x))
+   Coqtop_custom (sprintf "Hint Extern 1 (WPHeader_Register_CF %s) => WPHeader_Provide %s." x (cf_axiom_name x))
    (* DEPRECATED
       Coqtop_register ("CFML.CFPrint.database_cf", x, cf_axiom_name x)
     *)
@@ -1632,7 +1632,7 @@ let cfg_file no_mystd_include str =
       (* TODO: check binintdef needed *)
       Coqtop_custom "Delimit Scope Z_scope with Z." ::
       (if !Mytools.generate_encoders then [] else
-         [Coqtop_custom "Existing Instance WPHeader.Use_Enc_any.Enc_any | 99."]) @
+         [Coqtop_custom "Global Existing Instance WPHeader.Use_Enc_any.Enc_any | 99."]) @
       (* DEPRECATED Coqtop_custom "Local Open Scope cfheader_scope."; *)
       (*DEPRECATED Coqtop_custom "Open Scope list_scope.";*)
       (*DEPRECATED Coqtop_custom "Local Notation \"'int'\" := (Coq.ZArith.BinInt.Z).";*)
