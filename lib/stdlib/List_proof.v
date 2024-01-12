@@ -99,6 +99,9 @@ Hint Extern 1 (RegisterSpec concat) => Provide concat_spec.
 (************************************************************)
 (** Iterators *)
 
+#[global] Instance Enc_func : Enc func.
+Proof. unfold func. apply _. Defined.
+
 Lemma iter_spec : forall A `{EA:Enc A} (l:list A) (f:func),
   forall (I:list A->hprop),
   (forall x t r, (l = t++x::r) ->

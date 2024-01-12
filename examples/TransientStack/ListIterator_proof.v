@@ -17,6 +17,9 @@ Proof. xcf_go. Qed.
 
 Hint Extern 1 (RegisterSpec of_list) => Provide of_list_spec.
 
+#[global] Instance Enc_func A : Enc (t_ A).
+Proof. unfold t_. apply _. Defined.
+
 Lemma finished_spec : forall A (EA:Enc A) (IA:Inhab A) (L:list A) (lit:t_ A),
   SPEC (finished lit)
     PRE (\$1)
