@@ -1632,7 +1632,16 @@ let cfg_file no_mystd_include str =
       (* TODO: check binintdef needed *)
       Coqtop_custom "Delimit Scope Z_scope with Z." ::
       (if !Mytools.generate_encoders then [] else
-         [Coqtop_custom "Global Existing Instance WPHeader.Use_Enc_any.Enc_any | 99."]) @
+         [Coqtop_custom "Global Existing Instance WPHeader.Use_Enc_any.Enc_any | 99.
+
+         Elpi Accumulate TC.Solver lp:{{
+:replace \"CFML.WPHeader.Use_Enc_any.Enc_any\"
+tc-CFML.SepLifted.tc-Enc A S :- not(var A), S = {{ WPHeader.Use_Enc_any.Enc_any lp:A }}.
+
+}}.
+
+
+         "]) @
       (* DEPRECATED Coqtop_custom "Local Open Scope cfheader_scope."; *)
       (*DEPRECATED Coqtop_custom "Open Scope list_scope.";*)
       (*DEPRECATED Coqtop_custom "Local Notation \"'int'\" := (Coq.ZArith.BinInt.Z).";*)

@@ -37,7 +37,7 @@ Implicit Types b : bool.
 (* ---------------------------------------------------------------------- *)
 (* ** Encoders *)
 
-(*#[mode(i)] *)
+#[mode(i)]
 TC.Declare
 Class Enc (A:Type) : Type := make_Enc
   { enc : A -> val;
