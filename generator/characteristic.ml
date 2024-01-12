@@ -16,7 +16,7 @@ open Printf
 (* ** Helper functions for various things *)
 
 let register_cf x =
-   Coqtop_custom (sprintf "Hint Extern 1 (WPHeader_Register_CF %s) => WPHeader_Provide %s." x (cf_axiom_name x))
+   Coqtop_custom (sprintf "Global Hint Extern 1 (WPHeader_Register_CF %s) => WPHeader_Provide %s." x (cf_axiom_name x))
    (* DEPRECATED
       Coqtop_register ("CFML.CFPrint.database_cf", x, cf_axiom_name x)
     *)
